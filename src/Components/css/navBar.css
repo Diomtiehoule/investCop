@@ -1,0 +1,26 @@
+a{
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
+.header_nav{
+    height: 15vh;
+    padding-right: 1%;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+nav ul{
+    display: flex;
+    gap: 20px;
+}
+nav ul li{
+    list-style: none;
+    font-size: 1.3rem;
+    margin-top: 22%;
+    color: #282936;
+}
+nav .logo{
+    font-size: 1.4rem;
+}

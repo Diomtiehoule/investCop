@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
   }
+  
   /* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"); */
   
   body {
@@ -11,7 +12,7 @@
   
   .carousel-container {
     overflow: hidden;
-    width: 100%;
+    width: 95%;
     height: 50vh;
     object-fit: cover;
     position: relative;
@@ -19,6 +20,7 @@
     margin: auto;
     margin-bottom: 10%;
     z-index: 0;
+    
   }
   
   /* Hide the images by default */
@@ -34,6 +36,7 @@
   }
   .prev,
   .next {
+    display: none;
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -141,6 +144,7 @@
     left: 10px;
   }
   .dots-container {
+    display: none;
     position: absolute;
     bottom: 10px;
     left: 50%;
@@ -172,6 +176,62 @@
     animation-duration: 4s;
   }
   
+  /* animation */
+  .partenaires{
+    margin-top: 25%;
+    padding: 2rem;
+  text-align: center;
+  }
+  .partenaires h1{
+    font-size: 3rem;
+  }
+  marquee img{
+    width: 10%;
+    margin-top: 5%;
+    margin-right: 5%;
+  }
+  .newsLetter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    padding: 10px;
+  }
+  .newsLetter h1{
+    font-size: 4rem;
+    margin-right: 15%;
+    margin-top: 0%;
+    color: #282936;
+  }
+  .text_news{
+    width: 40%;
+  }
+  .newsLetter .text_news p{
+    margin-top: 5%;
+    font-size: 1.6rem;
+    margin-bottom: 3%;
+    color: #282936;
+  }
+  .text_news input{
+    width: 80%;
+    height: 5vh;
+    padding-left: 2%;
+    margin-right: 2%;
+    font-size: 1.1rem;
+    border: none;
+    border-bottom: 2px solid black;
+  }
+  .text_news button{
+    height: 5vh;
+    width: 15%;
+    padding: 1%;
+    background-color: #e5b406;
+    border-radius: 5px;
+    border: #e5b406;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+  }
   /* @keyframes animate {
     from {
       transform: scale(1.1) rotateY(10deg);

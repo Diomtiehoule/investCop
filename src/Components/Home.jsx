@@ -6,6 +6,17 @@ import photo2 from '../Media/finance.jpg'
 import photo3 from '../Media/etude.jpg'
 import photo4 from '../Media/invest.jpg'
 import photo5 from '../Media/realisation.jpg'
+import logo1 from '../Media/logo1.jpg'
+import logo2 from '../Media/logo2.jpg'
+import logo3 from '../Media/logo3.jpg'
+import logo4 from '../Media/logo4.jpg'
+import logo5 from '../Media/logo5.jpg'
+import logo6 from '../Media/logo6.jpg'
+import logo7 from '../Media/logo7.jpg'
+import logo8 from '../Media/logo8.jpg'
+import logo9 from '../Media/logo9.jpg'
+import logo10 from '../Media/logo10.jpg'
+import Service from './Service';
 
 function Home() {
     
@@ -71,10 +82,12 @@ setInterval(() => {
 
     return (
         <>
-            <div className="carousel-container">
+        <div className="rootHome">
+
+        <div className="carousel-container">
       <div className="mySlides animate">
         <img src={photo} alt='mon image'/>
-        <div className="number">Votre plateforme de financement</div>
+        <div className="number">Votre plateforme de financement de projet professionnelle.</div>
         <div className="text">
           <h5>
             InvestCop c'est une equipe compétente a votre service.
@@ -89,7 +102,7 @@ setInterval(() => {
         <img
           src={photo}
         />
-        <div className="number">Votre plateforme de financement</div>
+        <div className="number">Votre plateforme de financement de projet professionnelle.</div>
         <div className="text">
           <h5>
             Un reseau bien etabli pour la réalisation de vos projet.
@@ -184,6 +197,43 @@ setInterval(() => {
         </div>
       </div>
     </section>
+
+    < Service />
+
+      <div className="partenaires">
+        <h1>Entreprise partenaire</h1>
+      </div>
+      <div>
+      <marquee  className="marquee_left">
+      <img src={logo1} alt="" />
+      <img src={logo2} alt="" />
+      <img src={logo3} alt="" />
+      <img src={logo4} alt="" />
+      <img src={logo5} alt="" />
+    </marquee>
+      </div>
+    
+      <div>
+      <marquee direction='right'>
+      <img src={logo6} alt="" />
+      <img src={logo7} alt="" />
+      <img src={logo8} alt="" />
+      <img src={logo9} alt="" />
+      <img src={logo10} alt="" />
+    </marquee>
+      </div>
+
+      <div className="newsLetter">
+        <h1>NewsLetter</h1>
+
+        <div className="text_news">
+          <p>Rester informé de nos actualité. <br /><br />Vous ne voulez rien manqué de nos plus belle offres de financement pour pas passer à côté d'une chance ?. Laisser votre email pour recevoir nos notification.</p>
+          <input type="email" placeholder='utilisateur@gmail.com'/><button type='submit'>Envoyer</button>
+        </div>
+      </div>
+        </div>
+            
+    
     </>
     );
 }

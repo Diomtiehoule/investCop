@@ -5,6 +5,8 @@ import { set , ref, onValue , remove, update} from 'firebase/database'
 import './App.css'
 import Invest from './Components/Invest';
 import Home from './Components/Home';
+import Service from './Components/Service';
+import NavBarHome from './Components/NavBarHome';
 
 function App() {
 
@@ -91,6 +93,7 @@ function App() {
   return (
     
     <>
+    < NavBarHome /> 
     < Home />
       < Invest message = {reponse} reponse ={reponseChef}/>
       <h2>message client</h2>
