@@ -20,7 +20,9 @@
     margin: auto;
     margin-bottom: 10%;
     z-index: 0;
-    
+  }
+  .carousel-container span a{
+    color : white;
   }
   
   /* Hide the images by default */

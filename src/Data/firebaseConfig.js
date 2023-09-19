@@ -6,12 +6,12 @@ import { getDatabase } from "firebase/database"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAPylZu8e2Lcybx4mf3MY70jMk3ItQ4vqI",
+  apiKey: 'AIzaSyAPylZu8e2Lcybx4mf3MY70jMk3ItQ4vqI',
   authDomain: "investcop-11623.firebaseapp.com",
   projectId: "investcop-11623",
   storageBucket: "investcop-11623.appspot.com",
   messagingSenderId: "409761524495",
-  appId: "1:409761524495:web:688c62f3df5eb0cbc02c7a"
+  appId:"1:409761524495:web:688c62f3df5eb0cbc02c7a"
 };
 
 // Initialize Firebase

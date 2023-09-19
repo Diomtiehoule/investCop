@@ -7,6 +7,15 @@ import Invest from './Components/Invest';
 import Home from './Components/Home';
 import Service from './Components/Service';
 import NavBarHome from './Components/NavBarHome';
+import Login from './Components/Login';
+import Register from './Components/Register'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Projet from './Components/Projet';
+import Footer from './Components/Footer';
+import NavBarUser from './Antite/users/NavBarUser';
+import Profil from './Antite/users/Profil';
+import Activite from './Antite/users/Activite';
+import ProjetUser from './Antite/users/ProjetUser';
 
 function App() {
 
@@ -77,7 +86,7 @@ function App() {
       description,
       cout,
       uuid,
-    });
+    });SVGUseElement
 
     setProjet('')
     setCout('')
@@ -93,38 +102,20 @@ function App() {
   return (
     
     <>
-    < NavBarHome /> 
-    < Home />
-      < Invest message = {reponse} reponse ={reponseChef}/>
-      <h2>message client</h2>
-      <h3>{message}</h3>
-      <input type="text"  key={projet.uuid} value={projet} onChange={handleTodoChange}/>
-      <input type="text"  value={description} onChange={handleDescriptionChange}/>
-      <input type="number" value={cout} onChange={handleCoutChange}/>
-      {isEdit ? (
-        <>
-          <button onClick={handleSubmitChange}>mettre a jours</button>
-          <button onClick={() => setIsEdit(false)} >X</button>;
-        </>
-      ) : (
-        <button onClick={writeDatabase}>valider</button>
-      )
-    }
 
-    
-
-      {allProjet.map((projet) => (
-        <>
-        <div className="projet">
-        <h1>{projet.projet}</h1>
-          <p>{projet.description}</p>
-          <p>{projet.cout}</p>
-          <button onClick={() => handleUpdate(projet)}>mise a jour</button>
-          <button onClick={()=>handleDelete(projet)}>supprimer</button>
-        </div>
-          
-        </>
-      ))}
+    <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/service' element={<Service />} />
+       <Route path='/navhat' element={<NavBarUser />} /> 
+       <Route path='/register' element={<Register />} /> 
+       <Route path='/login' element={<Login />} />
+       <Route path='/profil/:id' element={<Projet/>} /> 
+       <Route path='/notification/:id' element={<Notification/>} />
+       <Route path='/projetUser/:id' element={<ProjetUser/>} />
+       <Route path='/activite/:id' element={<Activite/>} />
+    </Routes>
+    </BrowserRouter>
     </>
   )   
 }

@@ -12,8 +12,9 @@ function NavBarHome(props) {
 
                 <ul>
                     
-                <li>Inscription</li>
-                <li>Connexion</li>
+                   
+                <li>< Link to='/register'>Inscription</Link></li>
+                <li>< Link to='/login'>Connexion</Link></li>
             </ul>
             </nav>
 

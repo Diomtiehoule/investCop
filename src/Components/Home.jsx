@@ -17,6 +17,9 @@ import logo8 from '../Media/logo8.jpg'
 import logo9 from '../Media/logo9.jpg'
 import logo10 from '../Media/logo10.jpg'
 import Service from './Service';
+import NavBarHome from './NavBarHome';
+import Footer from './Footer';
+import { Link } from 'react-router-dom';
 
 function Home() {
     
@@ -82,6 +85,7 @@ setInterval(() => {
 
     return (
         <>
+        < NavBarHome />
         <div className="rootHome">
 
         <div className="carousel-container">
@@ -93,7 +97,7 @@ setInterval(() => {
             InvestCop c'est une equipe compétente a votre service.
           </h5>
           <button className="suivant">
-            <span className="button-content">Rejoignez-nous</span>
+          <span className="button-content"><Link to="/register">Rejoignez-nous</Link></span>
           </button>
         </div>
       </div>
@@ -109,7 +113,7 @@ setInterval(() => {
           </h5>
 
           <button className="suivant">
-            <span className="button-content">Rejoignez-nous</span>
+            <span className="button-content"><Link to="/register">Rejoignez-nous</Link></span>
           </button>
         </div>
         </div>
@@ -156,7 +160,7 @@ setInterval(() => {
         <span className="circle" aria-hidden="true">
           <span className="icon arrow"></span>
         </span>
-        <a href="/HTML/service.html" className="button-text">Voir plus</a>
+        <a href="#section_info" className="button-text">Voir plus</a>
       </button>
       
       <div className="dec-puce">
@@ -198,30 +202,32 @@ setInterval(() => {
       </div>
     </section>
 
+    <section id='section_info'>
     < Service />
 
-      <div className="partenaires">
-        <h1>Entreprise partenaire</h1>
-      </div>
-      <div>
-      <marquee  className="marquee_left">
-      <img src={logo1} alt="" />
-      <img src={logo2} alt="" />
-      <img src={logo3} alt="" />
-      <img src={logo4} alt="" />
-      <img src={logo5} alt="" />
-    </marquee>
-      </div>
-    
-      <div>
-      <marquee direction='right'>
-      <img src={logo6} alt="" />
-      <img src={logo7} alt="" />
-      <img src={logo8} alt="" />
-      <img src={logo9} alt="" />
-      <img src={logo10} alt="" />
-    </marquee>
-      </div>
+<div className="partenaires">
+  <h1>Entreprise partenaire</h1>
+</div>
+<div>
+<marquee  className="marquee_left">
+<img src={logo1} alt="" />
+<img src={logo2} alt="" />
+<img src={logo3} alt="" />
+<img src={logo4} alt="" />
+<img src={logo5} alt="" />
+</marquee>
+</div>
+
+<div>
+<marquee direction='right'>
+<img src={logo6} alt="" />
+<img src={logo7} alt="" />
+<img src={logo8} alt="" />
+<img src={logo9} alt="" />
+<img src={logo10} alt="" />
+</marquee>
+</div>
+    </section>
 
       <div className="newsLetter">
         <h1>NewsLetter</h1>
@@ -233,7 +239,7 @@ setInterval(() => {
       </div>
         </div>
             
-    
+    < Footer />
     </>
     );
 }

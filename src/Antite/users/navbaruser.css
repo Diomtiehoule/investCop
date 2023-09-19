@@ -1,0 +1,14 @@
+.navUser{
+    background-color: #223344;
+    padding: 1%;
+}
+.navUser nav h1{
+    color: #e5b406;
+}
+.navUser nav ul li{
+    margin-top: 0;
+    color: white;
+}
+.navUser .profil h2{
+    color: white;
+}

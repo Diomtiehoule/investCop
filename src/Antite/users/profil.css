@@ -1,0 +1,23 @@
+.profil_user{
+    width: 60%;
+    height: 50vh;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+.avatar_user{
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    margin-right: 5%;
+}
+.information_user{
+    height: 30vh;
+    margin-top: 7%;
+}
+.information_user p{
+    margin-bottom: 25%;
+}

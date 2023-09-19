@@ -1,0 +1,41 @@
+.footer_zone{
+    background-color: #223344;
+    padding: 2%;
+}
+.footer_zone p{
+    color: white;
+}
+.details_footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 150px;
+    padding: 3%;
+}
+.icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.icon i{
+    font-size: 1.3rem;
+    color:white
+}
+.about ul li{
+    list-style: none;
+    margin-bottom: 7%;
+    color: white;
+    cursor: pointer;
+}
+.conseil h2{
+    margin-bottom: 3%;
+    color: white;
+}
+.conseil p{
+    margin-bottom: 2%;
+    color: white;
+}
+.conseil p:last-child{
+    font-size: .8rem;
+}

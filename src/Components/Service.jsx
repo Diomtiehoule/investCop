@@ -3,7 +3,6 @@ import '../Components/css/service.css'
 import photo from '../Media/analyse.jpg'
 import photo1 from '../Media/business.jpg'
 import photo2 from '../Media/growth.jpg'
-import photo3 from '../Media/date.jpg'
 
 function Service() {
     return (
