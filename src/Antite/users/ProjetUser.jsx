@@ -1,6 +1,6 @@
 import React, {useState , useEffect} from 'react';
 import '../users/projetUser.css'
-import { userCollection , getDocs , doc , docs } from '../../Data/firebaseConfig';
+import { userCollection , getDocs , doc } from '../../Data/firebaseConfig';
 import { Link , useParams , useNavigate } from 'react-router-dom';
 
 function ProjetUser() {

@@ -31,7 +31,12 @@ function Login() {
     signInWithEmailAndPassword(auth , formLogin.email , formLogin.password)
     .then((userCredential) =>{
         console.log('logged in user ID : ', userId)
-        navigate(`/profil/${userId}`)
+        if(formLogin.email === 'abrahamdiomande85@gmail.com' && formLogin.password === '123456789'){
+          console.log('connecté en tant que diomande')
+        }else{
+          navigate(`/profilUser/${userId}`)
+        }
+       
     })
     .catch((e) =>{
         console.log("vous n'avez pas de compte")

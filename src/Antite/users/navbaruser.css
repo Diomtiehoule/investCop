@@ -5,10 +5,34 @@
 .navUser nav h1{
     color: #e5b406;
 }
-.navUser nav ul li{
+.navUser i{
+    margin-right: 5px;
+}
+.navUser nav ul li , .navUser li a{
     margin-top: 0;
     color: white;
+    font-size: 1.2rem;
+}
+.navUser nav ul li:hover , .navUser li a:hover{
+    color: #e5b406;
 }
 .navUser .profil h2{
     color: white;
+}
+.navUser .profil .user_profil:hover p{
+    color: #e5b406;
+}
+.user_profil{
+    color: white;
+    cursor: pointer;
+    display: flex;
+    gap: 3px;
+}
+.user_profil i{
+    font-size: 1.5rem;
+    color: white;
+}
+.user_profil p{
+    padding-top: 1px;
+    font-size: 1.2rem;
 }

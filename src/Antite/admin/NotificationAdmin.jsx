@@ -1,10 +1,9 @@
-import React , {useState , useEffect}from 'react';
-import '../admin/activite.css'
+import React , {useState , useEffect} from 'react';
+import { useParams , useNavigate , Link } from 'react-router-dom';
+import { userCollection , getDocs , doc } from '../../Data/firebaseConfig';
 import NavBarAdmin from './NavBarAdmin';
-import { useParams , useNavigate , Link } from 'react-router-dom'
 
-function Activite() {
-
+function NotificationAdmin() {
     const [userInfo, setUserInfo] = useState({})
     let {id} = useParams()
     async function GetInfosUser(id){
@@ -29,13 +28,13 @@ function Activite() {
     useEffect(() => {
         GetInfosUser(id)
     }, [id])
-    
+
     return (
         <div>
-            < NavBarAdmin />
+            <NavBarAdmin />
             
         </div>
     );
 }
 
-export default Activite;
+export default NotificationAdmin;

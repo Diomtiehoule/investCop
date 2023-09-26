@@ -14,8 +14,13 @@ import Projet from './Components/Projet';
 import Footer from './Components/Footer';
 import NavBarUser from './Antite/users/NavBarUser';
 import Profil from './Antite/users/Profil';
-import Activite from './Antite/users/Activite';
+import Activite from './Antite/admin/Activite';
 import ProjetUser from './Antite/users/ProjetUser';
+import ProjetAdmin from './Antite/admin/ProjetAdmin';
+import Finance from './Antite/admin/Finance';
+import Compte from './Antite/admin/Compte'
+import NotificationAdmin from './Antite/admin/NotificationAdmin';
+import Assistance from './Antite/users/Assistance';
 
 function App() {
 
@@ -105,15 +110,24 @@ function App() {
 
     <BrowserRouter>
     <Routes>
+      
       <Route path='/' element={<Home />} />
       <Route path='/service' element={<Service />} />
-       <Route path='/navhat' element={<NavBarUser />} /> 
+       <Route path='/navbar' element={<NavBarUser />} /> 
        <Route path='/register' element={<Register />} /> 
        <Route path='/login' element={<Login />} />
+       {/* partie user */}
        <Route path='/profil/:id' element={<Projet/>} /> 
        <Route path='/notification/:id' element={<Notification/>} />
-       <Route path='/projetUser/:id' element={<ProjetUser/>} />
-       <Route path='/activite/:id' element={<Activite/>} />
+       <Route path='/projetUser/:id' element={<Projet/>} />
+       <Route path='/profilUser/:id' element={<Profil />} />
+       <Route path='/assistance/:id' element={<Assistance />} />
+       {/* partie Administrateur */}
+       <Route path='/activiteAdmin/:id' element={<Activite/>} />
+       <Route path='/projetAdmin/:id' element={<ProjetAdmin />} />
+       <Route path='/compte/:id' element={<Compte />} />
+       <Route path='/finance/:id' element={< Finance />} />
+       <Route path='/notificationAdmin/:id' element={< NotificationAdmin />} />
     </Routes>
     </BrowserRouter>
     </>

@@ -1,15 +1,18 @@
-import React, { useState , useEffect } from 'react';
-import '../Components/css/projet.css';
-import NavBarUser from '../Antite/users/NavBarUser';
-import {set , ref, onValue , remove, update} from 'firebase/database';
-import { addDoc, database, getDocs, userCollection , updateDoc , doc , db} from '../Data/firebaseConfig';
-import { uid , } from 'uid';
-import { useParams } from 'react-router-dom';
+import React, { useState , useEffect} from 'react';
+import { useParams , Link , useNavigate } from 'react-router-dom';
+import { set , ref, onValue , remove, update} from 'firebase/database';
+import { uid } from 'uid';
+import { userCollection , getDocs , doc , database } from '../../Data/firebaseConfig';
+import '../admin/projetAdmin.css'
+import NavBarAdmin from './NavBarAdmin';
 
-function Projet() {
-	const [allProjet , setAllProjet] = useState([]);
+function ProjetAdmin() {
+  const [allProjet , setAllProjet] = useState([]);
+  const [response , setResponse ] = useState([])
+  const [allResponse , setAllResponse ] = useState('')
 	const [ projet , setProjet ] = useState("");
 	const [ description , setDescription ] = useState('')
+  const [nbr_projet , setNbrProjet] = useState(0);
 	const [ cout , setCout] = useState(0);
 	const [ isEdit ,  setIsEdit ] = useState(false)
 	const [ tempuuid , setTempuuid] = useState('');
@@ -51,6 +54,12 @@ function Projet() {
 	const handleDescriptionChange = (e) =>{
 	  setDescription(e.target.value)
 	}
+  const handleRdvChange = (e) =>{
+	  setRdv(e.target.value)
+	}
+  const handleStatutChange = (e) =>{
+	  setStatut(e.target.value)
+	}
 	
   
 	//update
@@ -60,36 +69,32 @@ function Projet() {
 	}
   
 	
+  const [rdv , setRdv] = useState("")
+  const [typeInvest , setTypeInvest ] = useState('')
+
+  const uuid = uid();
 	const handleSubmitChange = () =>{
 	  update(ref(database , `${tempuuid}`) , {
 		projet,
 		cout,
 		description,
 		uuid : tempuuid,
+    statut,
+    typeInvest,
+    rdv,
 	  })
   
 	  setProjet('')
 	  setCout('')
 	  setDescription('')
+    setStatut('')
+    setRdv('')
 	  setIsEdit(false)
   
 	}
 	//delete
 	const handleDelete = (projet) =>{
 	  remove(ref(database, `/${projet.uuid}`))
-
-
-	  reduceProjet()
-	}
-
-	async function reduceProjet(){
-		if(nbr_projet === 0){
-			const docUser = doc(db , 'Users' , id)
-		    const newFild = ({nbr_projet : userInfo.nbr_projet -= 1})
-		    await updateDoc(docUser , newFild)
-		}
-		 
-		 console.log(userInfo.nbr_projet)
 	}
 	// read
 	useEffect(() =>{
@@ -98,8 +103,8 @@ function Projet() {
 		const data = snapshot.val()
 		console.log(data)
 		if(data !== null){
-		  Object.values(data).map(projet =>{
-			setAllProjet((oldArray) => [...oldArray , projet])
+		  Object.values(data).map(response =>{
+			setAllProjet((oldArray) => [...oldArray , response])
 		  }) 
 		
 		}
@@ -114,33 +119,24 @@ function Projet() {
 	const writeDatabase = () => {
 	  const uuid = uid()
 	  set(ref(database , `${uuid}`),{
-		projet,
-		description,
-		cout,
+		reponse,
 		uuid,
 		nom,
 		jours,
-		date,
+    statut,
 	  });
   
 	  setProjet('')
 	  setCout('')
 	  setDescription('')
+    setStatut('')
+    setRdv('')
 	  setModal(!modal)
-
-	  updateProjet()
-	}
-
-	async function updateProjet(){
-		const docUser = doc(db , 'Users', id);
-		const newfield = {nbr_projet : userInfo.nbr_projet += 1 }
-		await updateDoc(docUser , newfield)
-  
-		console.log(userInfo.nbr_projet);
 	}
   
 	const reponse = "j'adore votre projet !";
 	const [message , setMessage] = useState('')
+  const [statut , setStatut] = useState('')
   
 	function reponseChef(mgs){
 	  setMessage(mgs)
@@ -148,21 +144,57 @@ function Projet() {
 
 	const [ modal , setModal ] =useState(false)
 	const toggleModal = ()=>{
+     setIsEdit(true);
+	  setTempuuid(projet.uuid);
 		setModal(!modal)
+    console.log(projet.uuid)
+
 	}
-
+    
     return (
+        
         <div>
-			< NavBarUser />
+			<NavBarAdmin />
 
-			<div className="new_projet">
-			<div className="no_projet">
-			{/* <p>Vous n'avez pas de projet , créer un nouveau projet</p> */}
-			<button onClick={toggleModal} className='btn-modal'>Nouveau projet</button>
-			</div>
-			
-			</div>
-			{allProjet.map((projet) => (
+{ modal && (
+				<div className="modal">
+				<div className="overlay" onClick={toggleModal}></div>
+							<div className="container-projet">
+					
+					<div className="modal-content container-projet">
+						<div className="modal__header">
+							<span className="modal__title">Nouveau Projet : {projet.nom}</span><button className="button button--icon" onClick={toggleModal}><svg width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg">
+									<path fill="none" d="M0 0h24v24H0V0z"></path>
+									<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg></button>
+						</div>
+						<div className="modal__body">
+							<div className="input">
+								<label className="input__label">Nom de Projet</label>
+								<input className="input__field" type="text" key={projet.uuid} value={projet} onChange={handleTodoChange}/> 
+								<p className="input__description">Le titre ne peut contenir que  32 caractères</p>
+							</div>
+							<div className="input">
+												<label className="input__label">Description</label>
+								<textarea className="input__field input__field--textarea" value={rdv.jour} onChange={handleRdvChange}></textarea>
+									<p className="input__description">Donnez la description la plus claire possible de votre projet.</p>
+							</div>
+
+							<div className="input">
+								<label className="input__label">Fond d'investissement</label>
+								<input className="input__field" type="text"  placeholder='CFA' value={statut} onChange={handleStatutChange}/> 
+								<p className="input__description">Donnez le  fond nécéssaire au projet</p>
+							</div>
+							
+						</div>
+						
+						<div className="modal__footer">
+							<button className="button button--primary close-modal" onClick={writeDatabase}>Créer le projet</button>
+						</div>
+					</div>
+				</div>
+				</div>
+			)}
+            {allProjet.map((projet) => (
         <>
 
 		<div className="card">
@@ -185,7 +217,9 @@ function Projet() {
         </div>
       </div>
       <p className="comment-content">
-	  {projet.description}.
+	  {projet.description}
+    {projet.reponse} <br />
+    {projet.statut}
       </p>
     </div>
   </div>
@@ -194,7 +228,7 @@ function Projet() {
   </div><br /><br />
 
  
-	<button className="delete_Projet" onClick={()=>handleDelete(projet)}>Suppprimer</button>
+	<button className="invest_Projet" onClick={toggleModal}>Investir</button>
   
 
   <div className="text-box">
@@ -248,73 +282,8 @@ function Projet() {
           
         </>
       ))}
-			
-			
-			{ modal && (
-				
-				<div className="modal">
-				<div className="overlay" onClick={toggleModal}></div>
-							<div className="container-projet">
-					
-					<div className="modal-content container-projet">
-						<div className="modal__header">
-							<span className="modal__title">Nouveau Projet</span><button className="button button--icon" onClick={toggleModal}><svg width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg">
-									<path fill="none" d="M0 0h24v24H0V0z"></path>
-									<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg></button>
-						</div>
-						<div className="modal__body">
-							<div className="input">
-								<label className="input__label">Nom de Projet</label>
-								<input className="input__field" type="text" key={projet.uuid} value={projet} onChange={handleTodoChange}/> 
-								<p className="input__description">Le titre ne peut contenir que  32 caractères</p>
-							</div>
-							<div className="input">
-												<label className="input__label">Description</label>
-								<textarea className="input__field input__field--textarea" value={description} onChange={handleDescriptionChange}></textarea>
-									<p className="input__description">Donnez la description la plus claire possible de votre projet.</p>
-							</div>
-
-							<div className="input">
-								<label className="input__label">Fond d'investissement</label>
-								<input className="input__field" type="number"  placeholder='CFA' value={cout} onChange={handleCoutChange}/> 
-								<p className="input__description">Donnez le  fond nécéssaire au projet</p>
-							</div>
-							
-						</div>
-						
-						<div className="modal__footer">
-							<button className="button button--primary close-modal"  onClick={writeDatabase}>Créer le projet</button>
-						</div>
-					</div>
-				</div>
-				</div>
-			)}
-			
-      {/* <h2>message client</h2>
-      <h3>{message}</h3>
-      <input type="text"  key={projet.uuid} value={projet} onChange={handleTodoChange}/>
-      <input type="text"  value={description} onChange={handleDescriptionChange}/>
-      <input type="number" value={cout} onChange={handleCoutChange}/>
-      {isEdit ? (
-        <>
-          <button onClick={handleSubmitChange}>mettre a jours</button>
-          <button onClick={() => setIsEdit(false)}>X</button>
-        </>
-      ) : (
-        <button onClick={writeDatabase}>valider</button>
-      )
-    } */}
-
-	
-
-    
-
-      
-
-
-         
         </div>
     );
 }
 
-export default Projet;
+export default ProjetAdmin;

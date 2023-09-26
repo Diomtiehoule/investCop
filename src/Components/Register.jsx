@@ -6,7 +6,8 @@ import {
   auth,
   addDoc,
   userCollection,
-  getDocs
+  getDocs,
+  doc
 } from '../Data/firebaseConfig'
 
 
@@ -63,7 +64,8 @@ function Register() {
       password : pwd,
       pays : country,
       ville : ville,
-      nbr_projet : projet
+      nbr_projet : projet,
+      smg_requete : ''
     })
     console.log(addDoc)
   }

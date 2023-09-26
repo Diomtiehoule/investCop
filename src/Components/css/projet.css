@@ -1,4 +1,11 @@
-
+.delete_Projet{
+  background-color: rgba(255, 0, 0, 0.672);
+  border: none;
+  padding: .7%;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+}
 
 .no_projet{
   display: flex;
