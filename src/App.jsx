@@ -14,13 +14,14 @@ import Projet from './Components/Projet';
 import Footer from './Components/Footer';
 import NavBarUser from './Antite/users/NavBarUser';
 import Profil from './Antite/users/Profil';
-import Activite from './Antite/admin/Activite';
+// import Activite from './Antite/admin/Activite';
 import ProjetUser from './Antite/users/ProjetUser';
 import ProjetAdmin from './Antite/admin/ProjetAdmin';
 import Finance from './Antite/admin/Finance';
 import Compte from './Antite/admin/Compte'
 import NotificationAdmin from './Antite/admin/NotificationAdmin';
 import Assistance from './Antite/users/Assistance';
+import CompteUser from './Antite/users/CompteUser';
 
 function App() {
 
@@ -122,8 +123,8 @@ function App() {
        <Route path='/projetUser/:id' element={<Projet/>} />
        <Route path='/profilUser/:id' element={<Profil />} />
        <Route path='/assistance/:id' element={<Assistance />} />
+       <Route path='/CompteUser/:id' element={<CompteUser/>} />
        {/* partie Administrateur */}
-       <Route path='/activiteAdmin/:id' element={<Activite/>} />
        <Route path='/projetAdmin/:id' element={<ProjetAdmin />} />
        <Route path='/compte/:id' element={<Compte />} />
        <Route path='/finance/:id' element={< Finance />} />

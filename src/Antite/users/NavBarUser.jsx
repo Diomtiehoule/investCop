@@ -36,7 +36,7 @@ function NavBarUser() {
                 <Link to="/"><h1>InvestCop</h1></Link>
                 <ul>
                     <li><Link to={`/projetUser/${id}`}>Projet({userInfo.nbr_projet})</Link></li>
-                    <li>Activité</li>
+                    <li><Link to={`/compteUser/${id}`}>Compte</Link></li>
                     <li>Notification</li>
                      <li><Link to={`/assistance/${id}`}>Assistance</Link></li>
                 </ul>

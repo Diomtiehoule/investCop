@@ -1,6 +1,6 @@
 import React , {useState , useEffect}from 'react';
 import { useParams , useNavigate , Link} from 'react-router-dom'
-import { userCollection , getDocs , doc } from '../../Data/firebaseConfig';
+import { userCollection , getDocs , doc , collection , db , updateDoc} from '../../Data/firebaseConfig';
 import './finance.css'
 import NavBarAdmin from './NavBarAdmin';
 
@@ -22,8 +22,8 @@ const element1 = document.querySelectorAll('.name-content_depot');
 const element2 = document.querySelector('.name-content-choix'); //flex
 const element3 = document.querySelector('.profit-image_depot'); //flex
 
-let allData = [];
-let allDocId=[];
+const [allData , setAllData] = useState([]);
+const [allDocId , setAllDocId] = useState([])
 
 
 
@@ -46,13 +46,29 @@ let allDocId=[];
     ;
     }
   
+    async function fetchAllUser(e){
+      e.preventDefault();
+      const querySnapshot = await getDocs(collection(db, "Users"));
+      querySnapshot.forEach((doc) => {
+     setAllData((prev) => {
+      return [...prev, doc.data()]
+  })
+console.log(doc.id," => ", doc.data() );
+console.log(allData)
+});
 
-async function getAllData() {
+  }
+
+
+  
+
+async function getAllData(e) {
+  e.preventDefault()
   try {
     const querySnapshot = await getDocs(userCollection);
     querySnapshot.forEach((doc) => {
       const documentData = doc.data();
-      allData.push(documentData);
+      setAllData(documentData);
     });
     console.log(allData); 
     return allData;
@@ -62,21 +78,26 @@ async function getAllData() {
 }
 
 
+
+// console.log(allData)
+
+
 function printValeur(elInput) {
   // Appel de la fonction getAllData() pour récupérer les données
-  getAllData().then(() => {
+  fetchAllUser().then(() => {
     const result = recupereDataCompte(allData, elInput);
   });
-
   
+
 }
 
 
-function recupereDataCompte(tab, elInput) {
-  for (let i = 0; i < tab.length; i++) {
+function recupereDataCompte(e, tab, elInput) {
+  e.preventDefault()
+  for (let i = 0; i < tab.length ; i++) {
     const element = tab[i];
-    console.log('item', element.NumCompte);
-    if (element.NumCompte === elInput) {
+    console.log('item', element.numCompte);
+    if (element.numCompte === elInput) {
       afficheValueInput(element)
       updateDepot(element)
       return element;
@@ -85,14 +106,18 @@ function recupereDataCompte(tab, elInput) {
   return null;
 }
 
+
 function afficheValueInput(data){
    nomClient.value=`${userInfo.nom}`
    prenomClient.value=`${userInfo.mail}`
-   contactClient.value=`${data.Contact}`
-   sexeClient.value=`${data.sexe}`
+   contactClient.value=`${data.pays}`
+   sexeClient.value=`${data.ville}`
 }
 
 let count = 0;
+
+
+
 async function sendElementDepot(data) {
   const depot = {
     nomClient: nomClient.value,
@@ -109,9 +134,9 @@ async function sendElementDepot(data) {
 
   try {
     const userRef = doc(userCollection,await recupereDocumentId(userCollection));
-    const userSnapshot = await getDoc(userRef);
+    const userSnapshot = await getDocs(userRef);
     const userData = userSnapshot.data();
-    let soldActuel = userData.soldActuel || 0;
+    let soldActuel = userData.solde || 0;
 
     const nouveauSoldActuel = soldActuel + Number(montantClient.value);
     count++;
@@ -121,7 +146,7 @@ async function sendElementDepot(data) {
 
     await updateDoc(userRef, {
      
-        soldActuel:nouveauSoldActuel,
+        sold: nouveauSoldActuel,
         smsDepot:count
       
     });
@@ -142,6 +167,7 @@ function updateDepot(data) {
 }
 
 const [userInfo, setUserInfo] = useState({})
+
     let {id} = useParams()
     async function GetInfosUser(id){
         try{
@@ -161,16 +187,39 @@ const [userInfo, setUserInfo] = useState({})
     }
         
     }
+    console.log(allData)
+
+    console.log(userInfo);
 
     useEffect(() => {
         GetInfosUser(id)
     }, [id])
 
 
+    const [montant , setMontant] = useState(0)
+
+  async function financement(e){
+    e.preventDefault()
+		const userData = doc(db , 'Users' , "ncHmuJultxvXy5uVdbRd")
+		const newFild = ({solde : userInfo.solde + Number(montant)})
+
+		await updateDoc(userData , newFild)
+		console.log('ok')
+	}
+  console.log(montant)
+  console.log(userInfo.solde)
 
     return (
         <div>
             < NavBarAdmin />
+
+            {allData.map((doc) => {
+              return (
+                <>
+                <h1>{doc.numCompte}</h1>
+                </>
+              )
+            })}
             <div className="contenaire-elements4">
                 <form className="section5">
                    <div className="name-data">
@@ -180,7 +229,7 @@ const [userInfo, setUserInfo] = useState({})
                    <div className="infos-user-trans">
                        <div className="user-trans-block">
                            <div className="name-content1">
-                               <label for="Id_clients" >N° de Compte du client client</label>
+                               <label for="Id_clients" >N° de Compte du client</label>
                                <input type="text" id="Id_clients" className="inputs"  placeholder="#####" onChange={numCompte}/>
                            </div>
                            <div className="name-content_depot">
@@ -206,12 +255,12 @@ const [userInfo, setUserInfo] = useState({})
                            </div>
                            <div className="name-content_depot">
                                <label for="Montant">Montant</label>
-                               <input type="text" id="Montant" className="inputs" />
+                               <input type="text" id="Montant" className="inputs" onChange={(e) => setMontant(e.target.value)}/>
                            </div>
                        </div>
         </div>
 
-        <button className="send-depot-btn" onClick={sendElementDepot}>DEPOSER</button>
+        <button className="send-depot-btn" onClick={financement}>DEPOSER</button>
         </form>
         </div>
         </div>

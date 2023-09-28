@@ -1,10 +1,12 @@
 /* DEPOT STYLE */
 .section5{
+    
     width: 60%;
     height: auto;
     margin-bottom: 10px;
-    /* margin: 50px auto 10px; */
-    /* border: 1px solid black; */
+    margin: 50px auto 10px;
+    margin-top: 10%;
+    border: 1px solid black;
     background: whitesmoke;
     transition: 0.2s linear;
     box-shadow: 1px 1px 10px lightslategray;

@@ -75,7 +75,8 @@ function Profil() {
 
 
             {modalLogOut && (
-                <div class="notifications-container">
+                <div className="overlay">
+                    <div class="notifications-container">
                 <div class="success">
                   <div class="flex">
                     <div class="flex-shrink-0">
@@ -102,6 +103,8 @@ function Profil() {
                   </div>
                 </div>
               </div>
+                </div>
+                
               
             )}
             
@@ -163,7 +166,7 @@ function Profil() {
                 <div className="informations_compte">
                     <div className="compte">
                         <p>Solde :</p>
-                        <p>2000</p>
+                        <p>{userInfo.solde} cfa</p>
                     </div>
                     <div className="compte">
                         <p>Compte Invest : </p>
@@ -171,7 +174,7 @@ function Profil() {
                     </div>
                     <div className="compte">
                         <p>Projet :</p>
-                        <p>1</p>
+                        <p>{userInfo.nbr_projet}</p>
                     </div>
                 </div>
                 <h1>Information Personnelle</h1>
