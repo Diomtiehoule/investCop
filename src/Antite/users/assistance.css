@@ -1,10 +1,11 @@
 .assistance_body{
-    background-image: url('../../Media/assistant.webp');
+    /* background-image: url('../../Media/assistant.webp'); */
     opacity: 1;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     height: 91.3vh;
+    background-color: #22334457;
 }
 .assistance_body h1{
     padding-top: 3%;

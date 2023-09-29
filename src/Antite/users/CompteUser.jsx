@@ -68,10 +68,11 @@ function CompteUser() {
 	const handleSubmitRetrait = (e) => {
 		e.preventDefault()
 		if(montantRetrait <= 0 || montantRetrait > userInfo.solde){
-			alert('Retrait impossible , veuillez verifiez votre solde ou le montant de retrait')
+			
+			swal("Impossible!", "Retrait impossible , veuillez verifiez votre solde ou le montant de retrait!", "error")
 		}else if(montantRetrait <= userInfo.solde && pwd == userInfo.password){
 			updateSolde()
-				alert('retrait confirmé !!')
+			swal("Succes!", "Votre rétrait à été éffectué avec succès!", "success");
 		}
 		
 	}

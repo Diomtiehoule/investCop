@@ -1,11 +1,10 @@
 import React, { useEffect , useState} from 'react';
-import '../users/profil.css'
-import NavBarUser from './NavBarUser'
 import { Link , useParams , useNavigate } from 'react-router-dom';
 import { userCollection , auth , doc , getDocs, updateDoc , db } from '../../Data/firebaseConfig';
 import { signOut } from 'firebase/auth';
+import NavBarAdmin from './NavBarAdmin';
 
-function Profil() {
+function ProfilAdmin() {
 
     let navigate = useNavigate()
     const [userInfo , setUserInfo] = useState({})
@@ -71,7 +70,7 @@ function Profil() {
 
     return (
         <>
-            <NavBarUser />
+            <NavBarAdmin />
 
 
             {modalLogOut && (
@@ -162,21 +161,6 @@ function Profil() {
                     </div>
                 </div>
                 
-                <h1>Information compte</h1>
-                <div className="informations_compte">
-                    <div className="compte">
-                        <p>Solde :</p>
-                        <p>{userInfo.solde} cfa</p>
-                    </div>
-                    <div className="compte">
-                        <p>Compte Invest : </p>
-                        <p>{userInfo.numCompte}</p>
-                    </div>
-                    <div className="compte">
-                        <p>Projet :</p>
-                        <p>{userInfo.nbr_projet}</p>
-                    </div>
-                </div>
                 <h1>Information Personnelle</h1>
                 <div className="informations_personnelle">
                     <div className="personnelle">
@@ -199,4 +183,4 @@ function Profil() {
     );
 }
 
-export default Profil;
+export default ProfilAdmin;

@@ -59,7 +59,7 @@ function Assistance() {
             <p>Envoyez-nous votre requête et nous vous repondrons au plus vite</p>
 
             <form class="form">
-    <div class="title">Contact us</div>
+    <div class="title">Votre requête</div>
     <textarea placeholder="Votre message" onChange={(e) => { setRequete(e.target.value)}}></textarea>
      
     <button onClick={update}>envoyer</button>

@@ -22,6 +22,7 @@ import Compte from './Antite/admin/Compte'
 import NotificationAdmin from './Antite/admin/NotificationAdmin';
 import Assistance from './Antite/users/Assistance';
 import CompteUser from './Antite/users/CompteUser';
+import ProfilAdmin from './Antite/admin/ProfilAdmin';
 
 function App() {
 
@@ -129,6 +130,7 @@ function App() {
        <Route path='/compte/:id' element={<Compte />} />
        <Route path='/finance/:id' element={< Finance />} />
        <Route path='/notificationAdmin/:id' element={< NotificationAdmin />} />
+       <Route path='/profilAdmin/:id' element={< ProfilAdmin />} />
     </Routes>
     </BrowserRouter>
     </>

@@ -2,7 +2,7 @@ import React, { useState , useEffect} from 'react';
 import { useParams , Link , useNavigate } from 'react-router-dom';
 import { set , ref, onValue , remove, update} from 'firebase/database';
 import { uid } from 'uid';
-import { userCollection , getDocs , doc , database } from '../../Data/firebaseConfig';
+import { userCollection , getDocs , doc , database , updateDoc , db , collection} from '../../Data/firebaseConfig';
 import '../admin/projetAdmin.css'
 import NavBarAdmin from './NavBarAdmin';
 
@@ -150,6 +150,18 @@ function ProjetAdmin() {
     console.log(projet.uuid)
 
 	}
+
+	const [avis , setAvis ] = useState('')
+	const [rencontre , setRencontre ] = useState('')
+
+		async function update(){
+		const docUser = doc(db , "Users" , id)
+		const newfield = ({avis_admin : avis  , recontre_admin: rencontre})
+	await updateDoc(docUser ,  newfield)
+	console.log('ok')
+
+	setModal(!modal)
+}
     
     return (
         
@@ -163,32 +175,28 @@ function ProjetAdmin() {
 					
 					<div className="modal-content container-projet">
 						<div className="modal__header">
-							<span className="modal__title">Nouveau Projet : {projet.nom}</span><button className="button button--icon" onClick={toggleModal}><svg width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg">
+							<span className="modal__title">Interessé par le projet</span><button className="button button--icon" onClick={toggleModal}><svg width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg">
 									<path fill="none" d="M0 0h24v24H0V0z"></path>
 									<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg></button>
 						</div>
 						<div className="modal__body">
 							<div className="input">
-								<label className="input__label">Nom de Projet</label>
-								<input className="input__field" type="text" key={projet.uuid} value={projet} onChange={handleTodoChange}/> 
-								<p className="input__description">Le titre ne peut contenir que  32 caractères</p>
+								<label className="input__label">Avis sur description Projet</label>
+								<input className="input__field" type="text" onChange={(e) => setAvis(e.target.value)}/> 
+								<p className="input__description"></p>
 							</div>
 							<div className="input">
-												<label className="input__label">Description</label>
-								<textarea className="input__field input__field--textarea" value={rdv.jour} onChange={handleRdvChange}></textarea>
-									<p className="input__description">Donnez la description la plus claire possible de votre projet.</p>
+												<label className="input__label">Demandez une rencontre</label>
+								<textarea className="input__field input__field--textarea"  onChange={(e) => setRencontre(e.target.value)}></textarea>
+									<p className="input__description">Organisez une renconntre avec l'auteur du projet pour des discussion d'investissement</p>
 							</div>
 
-							<div className="input">
-								<label className="input__label">Fond d'investissement</label>
-								<input className="input__field" type="text"  placeholder='CFA' value={statut} onChange={handleStatutChange}/> 
-								<p className="input__description">Donnez le  fond nécéssaire au projet</p>
-							</div>
+							
 							
 						</div>
 						
 						<div className="modal__footer">
-							<button className="button button--primary close-modal" onClick={writeDatabase}>Créer le projet</button>
+							<button className="button button--primary close-modal" onClick={update}>Envoyer</button>
 						</div>
 					</div>
 				</div>

@@ -36,13 +36,11 @@ function NavBarAdmin() {
                 <Link to="/"><h1>InvestCop</h1></Link>
                 <ul>
                     <li><Link to={`/projetAdmin/${id}`}>Projet</Link></li>
-                    <li><Link to={`/activiteAdmin/${id}`}>Activité</Link></li>
                     <li><Link to={`/notificationAdmin/${id}`}>Notification</Link></li>
-                     <li><Link to={`/compte/${id}`}>Utilisateur</Link></li>
                      <li><Link to={`/finance/${id}`}>financement</Link></li>
                 </ul>
                 <div className="profil">
-                   <Link to={`/profilUser/${id}`}> 
+                   <Link to={`/profilAdmin/${id}`}> 
                    <div className="user_profil">
                     <i class="fa fa-thin fa-circle-user"></i> <p>{userInfo.nom}</p>
                     </div></Link>

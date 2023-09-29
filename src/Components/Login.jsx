@@ -33,6 +33,7 @@ function Login() {
         console.log('logged in user ID : ', userId)
         if(formLogin.email === 'abrahamdiomande85@gmail.com' && formLogin.password === '123456789'){
           console.log('connecté en tant que diomande')
+          navigate(`/projetAdmin/${userId}`)
         }else{
           navigate(`/profilUser/${userId}`)
         }

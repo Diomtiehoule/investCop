@@ -28,7 +28,7 @@ const [allDocId , setAllDocId] = useState([])
 
 
     function numCompte(e){
-        if (e.target.value !== "") {
+        if (e.target.value === '123456') {
             element1.forEach((element) => {
               element.style.display = 'block';
             });
@@ -204,7 +204,9 @@ const [userInfo, setUserInfo] = useState({})
 		const newFild = ({solde : userInfo.solde + Number(montant)})
 
 		await updateDoc(userData , newFild)
-		console.log('ok')
+    swal("Succès!", "Votre retrait à bien été éffectué!", "success")
+		// console.log('ok')
+    
 	}
   console.log(montant)
   console.log(userInfo.solde)
@@ -232,27 +234,20 @@ const [userInfo, setUserInfo] = useState({})
                                <label for="Id_clients" >N° de Compte du client</label>
                                <input type="text" id="Id_clients" className="inputs"  placeholder="#####" onChange={numCompte}/>
                            </div>
-                           <div className="name-content_depot">
-                               <label for="Nom">Nom</label>
-                               <input type="text" id="Nom" className="inputs" />
-                           </div>
-                           <div className="name-content_depot">
-                               <label for="Prenom">Prenom</label>
+                            {/* <div className="name-content_depot">
+                                <label for="Nom">Nom</label>
+                                <input type="text" id="Nom" className="inputs" />
+                            </div> */}
+                           {/* <div className="name-content_depot">
+                               <label for="Prenom">Pays</label>
                                <input type="text" id="Prenom" className="inputs" />
                            </div>
                            <div className="name-content-choix">
                                <div className="content-two1">
-                                   <label for="Contact">Contact</label>
+                                   <label for="Contact">Ville</label>
                                    <input type="tel" id="Contact" />
                                </div>
-                               <div className="content-two">
-                                   <label for="Contact">Sexe</label>
-                                   <select name="" id="sexe">
-                                       <option value="F">F</option>
-                                       <option value="M">M</option>
-                                   </select>
-                               </div>
-                           </div>
+                           </div> */}
                            <div className="name-content_depot">
                                <label for="Montant">Montant</label>
                                <input type="text" id="Montant" className="inputs" onChange={(e) => setMontant(e.target.value)}/>
