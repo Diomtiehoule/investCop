@@ -177,29 +177,7 @@ setInterval(() => {
         </div>
       </div>
 
-      <div className="bgran-security">
-        <div className="op-security">
-          <h2>La sécurité de vos opérations en ligne</h2>
-          <img src="" alt="" />
-        </div>
-        <div className="icons-op">
-          <div className="icon-op">
-            <h4>Banque numérique</h4>
-            <img src="" alt="" />
-          </div>
-          <div className="icon-op">
-            <h4>Transfert d'argents</h4>
-            <img
-              src=""
-              alt=""
-            />
-          </div>
-          <div className="icon-op">
-            <h4>Prêts et paiements</h4>
-            <img src="" alt="" />
-          </div>
-        </div>
-      </div>
+      
     </section>
 
     <section id='section_info'>
