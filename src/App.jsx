@@ -23,6 +23,7 @@ import NotificationAdmin from './Antite/admin/NotificationAdmin';
 import Assistance from './Antite/users/Assistance';
 import CompteUser from './Antite/users/CompteUser';
 import ProfilAdmin from './Antite/admin/ProfilAdmin';
+import Notification from './Antite/users/Notification';
 
 function App() {
 
