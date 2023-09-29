@@ -4,7 +4,7 @@
     margin-top: 5%;
     max-width: 500px;
     width: 100%;
-    background: #FCEDDA;
+    background: #223344;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -38,7 +38,6 @@
     font-size: 1rem;
     color: #808080;
     margin-top: 5px;
-    border: 1px solid #EE4E34;
     border-radius: 6px;
     padding: 0 15px;
     background: #FCEDDA;
@@ -69,7 +68,7 @@
   }
   
   .gender input {
-    accent-color: #EE4E34;
+    accent-color: white;
   }
   
   .form :where(.gender input, .gender label) {
@@ -105,12 +104,10 @@
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
-    background: #EE4E34;
+    background: #e5b406;
   }
   
-  .form button:hover {
-    background: #EE3E34;
-  }
+  
 
 
   .sigin p{

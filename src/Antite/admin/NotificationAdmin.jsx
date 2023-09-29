@@ -1,6 +1,6 @@
 import React , {useState , useEffect} from 'react';
 import { useParams , useNavigate , Link } from 'react-router-dom';
-import { userCollection , getDocs , doc } from '../../Data/firebaseConfig';
+import { userCollection , getDocs , doc , collection , db} from '../../Data/firebaseConfig';
 import NavBarAdmin from './NavBarAdmin';
 
 function NotificationAdmin() {
@@ -29,9 +29,46 @@ function NotificationAdmin() {
         GetInfosUser(id)
     }, [id])
 
+    const [allRequete , setAllRequete] = useState([])
+
+async function fetchAllUser(e){
+    e.preventDefault();
+    const querySnapshot = await getDocs(collection(db, "Users" ,'SF'));
+    querySnapshot.forEach((doc) => {
+setAllRequete((prev) => {
+    return [...prev, doc.data()]
+})
+console.log(doc.id, " => ", doc.data());
+console.log(allRequete);
+});
+
+}
+
+
     return (
         <div>
             <NavBarAdmin />
+
+            <div className="list_notification">
+                <button onClick={fetchAllUser}>voir  vos reponse</button>
+            </div>
+            
+            {allRequete.map((doc) =>{
+                return (
+                    <>
+                    <div class="cookie-card">
+    <span class="title">Reponse Projet</span>
+    <p class="description">{doc.smg_requete}</p>
+    <div class="actions">
+        
+        <button class="accept">
+            Accepter
+        </button>
+    </div>
+</div>
+                    </>
+                )
+            })}
             
         </div>
     );
