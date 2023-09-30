@@ -7,6 +7,8 @@ import { uid , } from 'uid';
 import { useParams } from 'react-router-dom';
 
 function Projet() {
+
+	
 	const [allProjet , setAllProjet] = useState([]);
 	const [ projet , setProjet ] = useState("");
 	const [ description , setDescription ] = useState('')
@@ -77,8 +79,6 @@ function Projet() {
 	//delete
 	const handleDelete = (projet) =>{
 	  remove(ref(database, `/${projet.uuid}`))
-
-
 	  reduceProjet()
 	}
 
@@ -110,6 +110,7 @@ function Projet() {
    let jours = new Date()
    
     let nom = userInfo.nom;
+
 	// write
 	const writeDatabase = () => {
 	  const uuid = uid()
@@ -162,6 +163,7 @@ function Projet() {
 			</div>
 			
 			</div>
+
 			{allProjet.map((projet) => (
         <>
 

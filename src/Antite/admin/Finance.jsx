@@ -60,22 +60,26 @@ console.log(allData)
   }
 
 
+  const [tab , setTab] = useState([])
+  console.log(tab);
+  console.log(allData)
+
   
 
-async function getAllData(e) {
-  e.preventDefault()
-  try {
-    const querySnapshot = await getDocs(userCollection);
-    querySnapshot.forEach((doc) => {
-      const documentData = doc.data();
-      setAllData(documentData);
-    });
-    console.log(allData); 
-    return allData;
-  } catch (error) {
-    throw new Error("Une erreur s'est produite : " + error);
-  }
-}
+// async function getAllData(e) {
+//   e.preventDefault()
+//   try {
+//     const querySnapshot = await getDocs(userCollection);
+//     querySnapshot.forEach((doc) => {
+//       const documentData = doc.data();
+//       setAllData(documentData);
+//     });
+//     console.log(allData); 
+//     return allData;
+//   } catch (error) {
+//     throw new Error("Une erreur s'est produite : " + error);
+//   }
+// }
 
 
 
@@ -92,8 +96,7 @@ function printValeur(elInput) {
 }
 
 
-function recupereDataCompte(e, tab, elInput) {
-  e.preventDefault()
+function recupereDataCompte( tab, elInput) {
   for (let i = 0; i < tab.length ; i++) {
     const element = tab[i];
     console.log('item', element.numCompte);
@@ -109,7 +112,7 @@ function recupereDataCompte(e, tab, elInput) {
 
 function afficheValueInput(data){
    nomClient.value=`${userInfo.nom}`
-   prenomClient.value=`${userInfo.mail}`
+   prenomClient.value=`${data.mail}`
    contactClient.value=`${data.pays}`
    sexeClient.value=`${data.ville}`
 }

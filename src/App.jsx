@@ -1,7 +1,7 @@
 import React , { useEffect, useState } from 'react';
 import { database } from './Data/firebaseConfig';
 import { uid } from 'uid';
-import { set , ref, onValue , remove, update} from 'firebase/database'
+import { set , ref, onValue , remove, update} from 'firebase/database';
 import './App.css'
 import Invest from './Components/Invest';
 import Home from './Components/Home';
@@ -29,7 +29,7 @@ function App() {
 
   const [allProjet , setAllProjet] = useState([]);
   const [ projet , setProjet ] = useState("");
-  const [ description , setDescription ] = useState('')
+  const [ description , setDescription ] = useState('');
   const [ cout , setCout] = useState(0);
   const [ isEdit ,  setIsEdit ] = useState(false)
   const [ tempuuid , setTempuuid] = useState('');
@@ -94,7 +94,7 @@ function App() {
       description,
       cout,
       uuid,
-    });SVGUseElement
+    });
 
     setProjet('')
     setCout('')
